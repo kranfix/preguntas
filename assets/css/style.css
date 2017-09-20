@@ -23,3 +23,25 @@
     margin-top: 340px;
     padding-bottom: 60px;
 }
+
+
+a:link {
+    color: #2C0642;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border: solid;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    background-color: rgba(94, 75, 163, 0.61);
+}
+
+a:active {
+    text-decoration: underline;
+}
