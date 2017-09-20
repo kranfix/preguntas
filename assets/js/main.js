@@ -40,4 +40,15 @@ function loadPage(){
 
 }
 
+function insertAnswer(a){
+  Answers.push(a);
+  index++;
+  if(index < 5){
+    loadPage();
+  } else {
+    tags.Questions.style.display = 'none';
+    tags.answers.style.display = 'block';
+  }
+}
+
 loadPage();
