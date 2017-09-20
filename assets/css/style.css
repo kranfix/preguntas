@@ -1,3 +1,25 @@
-*{
-    outline: 1px solid red;
+@import url('https://fonts.googleapis.com/css?family=Wendy+One');
+.title{
+    margin-top: 50px;
+    margin-bottom: 40px;
+    font-family: 'Wendy One', sans-serif;
+}
+
+.progress{
+    margin-left: 70px;
+    margin-right: 70px;
+}
+
+.progress-bar{
+    background-color: rgba(66, 5, 57, 0.69);
+}
+
+.answer{
+    margin-left: 60px;
+}
+
+.square{
+    background-color: rgba(47, 11, 80, 0.33);
+    margin-top: 340px;
+    padding-bottom: 60px;
 }
