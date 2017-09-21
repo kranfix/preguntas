@@ -67,7 +67,6 @@ function loadAnswerConfirmation(){
         <span>${correctAnswer}</span>
       </div>`
   }
-  console.log(str);
   tags.answersConfirmation.innerHTML = str;
   tags.Questions.style.display = 'none';
   tags.answers.style.display = 'block';
@@ -81,11 +80,7 @@ function summitAnswer(){
 }
 
 function startQuiz(){
-  index = 0;
-  pageN = data.length - 1;
-  percent = 0;
-  myAnswers = [];
-  summited = false;
+  initVariables();
   tags.Questions.style.display = 'block';
   tags.answers.style.display = 'none';
   tags.bSummit.style.display = 'block';

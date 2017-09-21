@@ -30,9 +30,17 @@ var data = [
   }
 ];
 
-let index = 0;
+let index;
 let page;
-let pageN = 5;
-let percent = 0;
-let myAnswers = [];
-let summited = false; 
+let pageN;
+let percent;
+let myAnswers;
+let summited;
+
+function initVariables(){
+  index = 0;
+  pageN = data.length - 1;
+  percent = 0;
+  myAnswers = [];
+  summited = false;
+}
