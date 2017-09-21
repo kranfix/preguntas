@@ -15,7 +15,9 @@ var tags = {
   answers: document.getElementById('myAnswers'),
   results: document.getElementById('myResults'),
   Message: document.getElementById('Message'),
-  answersConfirmation: document.getElementById('answersConfirmation')
+  answersConfirmation: document.getElementById('answersConfirmation'),
+  bSummit: document.getElementById('bSummit'),
+  bStart: document.getElementById('bStart')
 }
 
 function loadPage(){
@@ -74,4 +76,18 @@ function loadAnswerConfirmation(){
 function summitAnswer(){
   summited = true;
   loadAnswerConfirmation();
+  tags.bSummit.style.display = 'none';
+  tags.bStart.style.display = 'block';
+}
+
+function startQuiz(){
+  index = 0;
+  pageN = data.length - 1;
+  percent = 0;
+  myAnswers = [];
+  summited = false;
+  tags.Questions.style.display = 'block';
+  tags.answers.style.display = 'none';
+  tags.bSummit.style.display = 'block';
+  tags.bStart.style.display = 'none';
 }
