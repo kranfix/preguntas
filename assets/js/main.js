@@ -81,6 +81,7 @@ function summitAnswer(){
 
 function startQuiz(){
   initVariables();
+  loadPage();
   tags.Questions.style.display = 'block';
   tags.answers.style.display = 'none';
   tags.bSummit.style.display = 'block';
