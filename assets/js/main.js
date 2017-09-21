@@ -13,14 +13,10 @@ var tags = {
   bar: document.getElementById('progressBar'),
   Questions: document.getElementById('Questions'),
   answers: document.getElementById('myAnswers'),
-  results: document.getElementById('myResults')
+  results: document.getElementById('myResults'),
+  Message: document.getElementById('Message'),
+  answersConfirmation: document.getElementById('answersConfirmation')
 }
-
-var index = 0;
-var pageN = 5;
-var percent = 0;
-Answers = [];
-
 
 function loadPage(){
   page = index + 1;
@@ -41,14 +37,41 @@ function loadPage(){
 }
 
 function insertAnswer(a){
-  Answers.push(a);
+  myAnswers.push(a);
   index++;
   if(index < 5){
     loadPage();
   } else {
-    tags.Questions.style.display = 'none';
-    tags.answers.style.display = 'block';
+    loadAnswerConfirmation()
   }
 }
 
-loadPage();
+function loadAnswerConfirmation(){
+  let str = "";
+  for(let i = 0; i < pageN; i++){
+    let chosenAnswer = "";
+    let user_answer = myAnswers[i];
+    chosenAnswer = data[i].alternatives[user_answer];
+
+    let correctAnswer = "";
+    if(summited){
+      let data_answer = data[i].answer;
+      correctAnswer = data[i].alternatives[data_answer];
+    }
+    str += `
+      <div>
+        ${i+1}. ${data[i].question}
+        <span>${chosenAnswer}</span>
+        <span>${correctAnswer}</span>
+      </div>`
+  }
+  console.log(str);
+  tags.answersConfirmation.innerHTML = str;
+  tags.Questions.style.display = 'none';
+  tags.answers.style.display = 'block';
+}
+
+function summitAnswer(){
+  summited = true;
+  loadAnswerConfirmation();
+}
