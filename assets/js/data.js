@@ -35,12 +35,12 @@ let page;
 let pageN;
 let percent;
 let myAnswers;
-let summited;
+let answersSubmited;
 
 function initVariables(){
   index = 0;
   pageN = data.length - 1;
   percent = 0;
   myAnswers = [];
-  summited = false;
+  answersSubmited = false;
 }
