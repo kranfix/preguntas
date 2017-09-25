@@ -16,13 +16,13 @@ var tags = {
   results: document.getElementById('myResults'),
   Message: document.getElementById('Message'),
   answersConfirmation: document.getElementById('answersConfirmation'),
-  bSummit: document.getElementById('bSummit'),
+  bSubmit: document.getElementById('bSubmit'),
   bStart: document.getElementById('bStart')
 }
 
-function loadPage(){
+function loadQuestionPage(){
   page = index + 1;
-  tags.numberOfAnswered.innerHTML = `${page} of 5 answered`;
+  tags.numberOfAnswered.innerHTML = `${page} of ${pageN} answered`;
 
   percent =  page * 100 / pageN;
   tags.completedPercent.innerHTML = `${percent}% completado`;
@@ -41,30 +41,45 @@ function loadPage(){
 function insertAnswer(a){
   myAnswers.push(a);
   index++;
-  if(index < 5){
-    loadPage();
+  if(index < pageN){
+    loadQuestionPage();
   } else {
-    loadAnswerConfirmation()
+    loadAnswersConfirmation()
   }
 }
 
-function loadAnswerConfirmation(){
+function loadAnswersConfirmation(){
   let str = "";
   for(let i = 0; i < pageN; i++){
-    let chosenAnswer = "";
     let user_answer = myAnswers[i];
-    chosenAnswer = data[i].alternatives[user_answer];
+    let chosenAnswer = data[i].alternatives[user_answer];
 
     let correctAnswer = "";
-    if(summited){
+    let textColors = {
+      chosenAnswer:"text-primary",
+      correctAnswer:"text-danger"
+    }
+
+    if(answersSubmited){
       let data_answer = data[i].answer;
-      correctAnswer = data[i].alternatives[data_answer];
+
+      if(data_answer == user_answer){
+        textColors.chosenAnswer = "text-success";
+        textColors.correctAnswer = "text-success";
+      } else {
+        correctAnswer = data[i].alternatives[data_answer];
+        textColors.chosenAnswer = "text-danger";
+        chosenAnswer = `<strike>${chosenAnswer}</strike>`;
+        textColors.correctAnswer = "text-success";
+      }
     }
     str += `
       <div>
-        ${i+1}. ${data[i].question}
-        <span>${chosenAnswer}</span>
-        <span>${correctAnswer}</span>
+        <span class="${textColors.chosenAnswer}">
+          ${i+1}. ${data[i].question}
+          ${chosenAnswer}
+        </span>
+        <span class="${textColors.correctAnswer}">${correctAnswer}</span>
       </div>`
   }
   tags.answersConfirmation.innerHTML = str;
@@ -72,18 +87,18 @@ function loadAnswerConfirmation(){
   tags.answers.style.display = 'block';
 }
 
-function summitAnswer(){
-  summited = true;
-  loadAnswerConfirmation();
-  tags.bSummit.style.display = 'none';
+function submitAnswers(){
+  answersSubmited = true;
+  loadAnswersConfirmation();
+  tags.bSubmit.style.display = 'none';
   tags.bStart.style.display = 'block';
 }
 
 function startQuiz(){
   initVariables();
-  loadPage();
+  loadQuestionPage();
   tags.Questions.style.display = 'block';
   tags.answers.style.display = 'none';
-  tags.bSummit.style.display = 'block';
+  tags.bSubmit.style.display = 'block';
   tags.bStart.style.display = 'none';
 }
